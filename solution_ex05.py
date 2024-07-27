@@ -9,7 +9,7 @@ Created on Tue Jun 18 14:45:53 2024
 import numpy as np
 import matplotlib.pyplot as plt
 #%%
-
+# Task 1(a):
 def f( x ):
     return 1.0 / ( 1.0 + x )
 
@@ -25,9 +25,10 @@ def lowerSumFunction(y,h):
         
     return integral
 #%%
-def upperSumFunction(y,h):
+def upperSumFunction(y, h):
     integral = 0.0
-    
+    for i in range(1, len(y), 1):
+        integral += y[i] * h
     return integral
 #%%
 def trapezoidal(y,h):
@@ -54,13 +55,15 @@ y = f(x)
 refValue = referenceFunction()
 
 numericalValue = lowerSumFunction( y, h )
+#numericalValue = upperSumFunction( y, h )
 #numericalValue = trapezoidal(y, h)
 
 errorValue = numericalValue - refValue
+#errorValue = refValue - numericalValue 
 rel = errorValue / refValue
 
 plt.figure(figsize=(10,8))
-print('Ref =%1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
+print('Ref = %1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
 plt.loglog( h, rel, 'bo' )
 #plt.loglog(h, numericalValue, 'r+')
 
@@ -74,12 +77,14 @@ y = f(x)
 refValue = referenceFunction()
 
 numericalValue = lowerSumFunction( y, h )
+#numericalValue = upperSumFunction( y, h )
 #numericalValue = trapezoidal(y, h)
 
 errorValue = numericalValue - refValue
+#errorValue = refValue - numericalValue 
 rel = errorValue / refValue
 
-print('Ref =%1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
+print('Ref = %1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
 plt.loglog( h, rel, 'rs' )
 
 N = 1000000
@@ -93,12 +98,14 @@ y = f(x)
 refValue = referenceFunction()
 
 numericalValue = lowerSumFunction( y, h )
+#numericalValue = upperSumFunction( y, h )
 #numericalValue = trapezoidal(y, h)
 
 errorValue = numericalValue-refValue
+#errorValue = refValue - numericalValue 
 rel = errorValue / refValue
 
-print('Ref =%1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
+print('Ref = %1.6e Num = %1.6e Err = %1.6e' % ( refValue, numericalValue, errorValue ) )
 plt.loglog( h, rel, 'gd' )
 
 ## Expectation 
@@ -113,9 +120,4 @@ eps2 = 0.1 * hval**2
 #plt.plot( hval, eps2,'k:' )
 plt.loglog( hval, eps2,'k:' )
 
-plt.show()
-
-#%%
-
-
-    
+plt.show() 
