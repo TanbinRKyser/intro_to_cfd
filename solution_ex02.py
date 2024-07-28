@@ -112,7 +112,7 @@ def Taylor_N( xi, N ):
     return sum_yi
 
 # N = 2
-# N = 4
+N = 8
 # N = 150
 x = np.linspace( -1.0, 4.0, 101 )
 
@@ -129,6 +129,5 @@ pl.plot( x, yN, 'b:', lw='2', label = 'TaylorN (N=%i)' % N )
 pl.grid()
 pl.ylim( [ -1.0, 3.0 ] )
 
-pl.legend()
-
+pl.legend(loc='upper right')
 pl.show()

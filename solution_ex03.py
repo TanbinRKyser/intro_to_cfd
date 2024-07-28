@@ -120,6 +120,7 @@ z2d = data( x2d, y2d )
 
 plt.figure( figsize=( 10, 8 ) )
 plt.contourf( x2d, y2d, z2d, 256 )
+plt.colorbar()
 #%%
 # Task 4 (low resolution grid )
 points = rnd.random_sample( ( 100, 2 ) )
@@ -138,5 +139,6 @@ z2d_interp = griddata( ( x1d, y1d, ), z1d, ( x2d, y2d ), method='nearest' )
 #z2d_interp = griddata( ( x1d, y1d, ), z1d, ( x2d, y2d ), method='cubic' )
 
 plt.contourf( x2d, y2d, z2d_interp, 256 )
+plt.colorbar()
 #plt.scatter(x1d, y1d, marker='o', c='k', s=3)
 #%%
