@@ -81,18 +81,15 @@ print( 'Mean of x: %1.6f' % mean_z)
 #%%
 
 # standard deviation function
-def compute_sd( values, mean ):
-    variance = sum( ( x - mean ) **2 for x in values ) / len( values )
-    return np.sqrt( variance )
+varX = compute_mean( x_arr**2 ) - mean_x**2
+varY = compute_mean( y_arr**2 ) - mean_y**2
+varZ = compute_mean( z_arr**2 ) - mean_z**2
 
-# Compute the standard deviation values for x, y, and z
-std_x = compute_sd( x_arr, mean_x)
-std_y = compute_sd( y_arr, mean_y)
-std_z = compute_sd( z_arr, mean_z)
+std_x = np.sqrt(varX)
+std_y = np.sqrt(varY)
+std_z = np.sqrt(varZ)
 
-print( 'Standard deviation of x: %1.6f' % std_x)
-print( 'Standard deviation of y: %1.6f' % std_y)
-print( 'Standard deviation of z: %1.6f' % std_z)
+print( 'Standard deviation values =%1.6f, %1.6f, %1.6f'%(std_x,std_y,std_z) )
 
 #%%
 # Post-processing
