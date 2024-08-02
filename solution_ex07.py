@@ -73,6 +73,7 @@ mean_x = compute_mean( x_arr )
 mean_y = compute_mean( y_arr )
 mean_z = compute_mean( z_arr )
 
+
 # Print the mean values
 print( 'Mean of x: %1.6f' % mean_x)
 print( 'Mean of y: %1.6f' % mean_y)
@@ -81,7 +82,26 @@ print( 'Mean of x: %1.6f' % mean_z)
 #%%
 
 # standard deviation function
+"""
+def compute_sd( values, mean ):
+    variance = sum( ( x - mean ) **2 for x in values ) / len( values )
+    return np.sqrt( variance )
+
+# Compute the standard deviation values for x, y, and z
+std_x = compute_sd( x_arr, mean_x)
+std_y = compute_sd( y_arr, mean_y)
+std_z = compute_sd( z_arr, mean_z)
+
+print( 'Standard deviation of x: %1.6f' % std_x)
+print( 'Standard deviation of y: %1.6f' % std_y)
+print( 'Standard deviation of z: %1.6f' % std_z)
+"""
+
+
 varX = compute_mean( x_arr**2 ) - mean_x**2
+#varX = sum((x_arr - mean_x)**2)
+#varX /= len(x_arr)
+#print(varX)
 varY = compute_mean( y_arr**2 ) - mean_y**2
 varZ = compute_mean( z_arr**2 ) - mean_z**2
 
@@ -97,16 +117,16 @@ fig = plt.figure(figsize=(18, 6))
 
 ax1 = fig.add_subplot( 131 )
 ax1.plot( t_arr, x_arr, 'b' )
-ax1.plot( [ 0, t_end], [ mean_x, mean_x ], 'k--', alpha=0.5)
-ax1.plot( t_arr[ np.argmin( np.abs( x_arr - mean_x ) ) ], mean_x, 'ko')
+ax1.axhline(mean_x, color='k', linestyle='--', alpha=0.5, label='Mean x')
+#ax1.plot( t_arr[ np.argmin( np.abs( x_arr - mean_x ) ) ], mean_x, 'ko')
 ax1.set_title('x vs t')
 ax1.set_xlabel('Time')
 ax1.set_ylabel('x')
 
 ax2 = fig.add_subplot( 132 )
 ax2.plot( t_arr, y_arr, 'g' )
-ax2.plot([0, t_end], [ mean_y, mean_y ], 'k--', alpha=0.5)
-ax2.plot( t_arr[ np.argmin( np.abs( y_arr - mean_y ) ) ], mean_y, 'ko' )
+ax2.axhline(mean_x, color='k', linestyle='--', alpha=0.5, label='Mean x')
+#ax2.plot( t_arr[ np.argmin( np.abs( y_arr - mean_y ) ) ], mean_y, 'ko' )
 ax2.set_title( 'y vs t' )
 ax2.set_xlabel( 'Time' )
 ax2.set_ylabel( 'y' )
@@ -114,8 +134,8 @@ ax2.set_ylabel( 'y' )
 
 ax3 = fig.add_subplot(133)
 ax3.plot( t_arr, z_arr, 'r')
-ax3.plot( [ 0, t_end ], [ mean_z, mean_z ], 'k--', alpha=0.5 )
-ax3.plot( t_arr[ np.argmin( np.abs( z_arr - mean_z ) ) ], mean_z,'ko' )
+ax3.axhline(mean_z, color='k', linestyle='--', alpha=0.5, label='Mean x')
+#ax3.plot( t_arr[ np.argmin( np.abs( z_arr - mean_z ) ) ], mean_z,'ko' )
 ax3.set_title( 'z vs t' )
 ax3.set_xlabel( 'Time' )
 ax3.set_ylabel( 'z' )
@@ -166,6 +186,11 @@ jpdf = axs[1].hist2d( x_plus_y, x_minus_y, bins=40, density=True, cmap='Reds' )
 axs[1].set_title( 'JPDF of x + y and x - y' )
 axs[1].set_xlabel( 'x + y' )
 axs[1].set_ylabel( 'x - y' )
+plt.colorbar( jpdf[3], ax=axs[1] )
+
+plt.tight_layout()
+plt.show()
+
 plt.colorbar( jpdf[3], ax=axs[1] )
 
 plt.tight_layout()
